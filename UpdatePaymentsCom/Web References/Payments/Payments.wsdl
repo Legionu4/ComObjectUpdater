@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://ukrposhta.org/Payments/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://ukrposhta.org/Payments/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://ukrposhta.org/Payments/">
+      <s:element name="CanceledPayment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="paymentID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="indexvz" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CanceledPaymentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CanceledPaymentResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPayment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strPayment" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPaymentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AutomaticReducing">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AutomaticReducingResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetServiceDLL">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetServiceDLLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetServiceDLLResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get418Version">
+        <s:complexType />
+      </s:element>
+      <s:element name="Get418VersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Get418VersionResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CanceledPaymentSoapIn">
+    <wsdl:part name="parameters" element="tns:CanceledPayment" />
+  </wsdl:message>
+  <wsdl:message name="CanceledPaymentSoapOut">
+    <wsdl:part name="parameters" element="tns:CanceledPaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPayment" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="AutomaticReducingSoapIn">
+    <wsdl:part name="parameters" element="tns:AutomaticReducing" />
+  </wsdl:message>
+  <wsdl:message name="AutomaticReducingSoapOut">
+    <wsdl:part name="parameters" element="tns:AutomaticReducingResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceDLLSoapIn">
+    <wsdl:part name="parameters" element="tns:GetServiceDLL" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceDLLSoapOut">
+    <wsdl:part name="parameters" element="tns:GetServiceDLLResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get418VersionSoapIn">
+    <wsdl:part name="parameters" element="tns:Get418Version" />
+  </wsdl:message>
+  <wsdl:message name="Get418VersionSoapOut">
+    <wsdl:part name="parameters" element="tns:Get418VersionResponse" />
+  </wsdl:message>
+  <wsdl:portType name="PaymentsSoap">
+    <wsdl:operation name="CanceledPayment">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">анулирование платежа</wsdl:documentation>
+      <wsdl:input message="tns:CanceledPaymentSoapIn" />
+      <wsdl:output message="tns:CanceledPaymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPayment">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">прием платежа</wsdl:documentation>
+      <wsdl:input message="tns:GetPaymentSoapIn" />
+      <wsdl:output message="tns:GetPaymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AutomaticReducing">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Automatic Reducing</wsdl:documentation>
+      <wsdl:input message="tns:AutomaticReducingSoapIn" />
+      <wsdl:output message="tns:AutomaticReducingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceDLL">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Current Service DDL</wsdl:documentation>
+      <wsdl:input message="tns:GetServiceDLLSoapIn" />
+      <wsdl:output message="tns:GetServiceDLLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get418Version">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Service Version</wsdl:documentation>
+      <wsdl:input message="tns:Get418VersionSoapIn" />
+      <wsdl:output message="tns:Get418VersionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PaymentsSoap" type="tns:PaymentsSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CanceledPayment">
+      <soap:operation soapAction="http://ukrposhta.org/Payments/CanceledPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPayment">
+      <soap:operation soapAction="http://ukrposhta.org/Payments/GetPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AutomaticReducing">
+      <soap:operation soapAction="http://ukrposhta.org/Payments/AutomaticReducing" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceDLL">
+      <soap:operation soapAction="http://ukrposhta.org/Payments/GetServiceDLL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get418Version">
+      <soap:operation soapAction="http://ukrposhta.org/Payments/Get418Version" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PaymentsSoap12" type="tns:PaymentsSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CanceledPayment">
+      <soap12:operation soapAction="http://ukrposhta.org/Payments/CanceledPayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPayment">
+      <soap12:operation soapAction="http://ukrposhta.org/Payments/GetPayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AutomaticReducing">
+      <soap12:operation soapAction="http://ukrposhta.org/Payments/AutomaticReducing" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceDLL">
+      <soap12:operation soapAction="http://ukrposhta.org/Payments/GetServiceDLL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get418Version">
+      <soap12:operation soapAction="http://ukrposhta.org/Payments/Get418Version" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Payments">
+    <wsdl:port name="PaymentsSoap" binding="tns:PaymentsSoap">
+      <soap:address location="http://localhost:4303/onlinepayment/Services/Payments.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PaymentsSoap12" binding="tns:PaymentsSoap12">
+      <soap12:address location="http://localhost:4303/onlinepayment/Services/Payments.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
